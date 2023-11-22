@@ -10,6 +10,8 @@ import { AppService } from './app.service';
 
 import * as fs from 'fs';
 
+import { v4 as uuidv4 } from 'uuid';
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -25,7 +27,7 @@ export class AppController {
     console.log('Received');
     console.log(file);
 
-    await fs.writeFileSync(file.originalname, file.buffer);
+    await fs.writeFileSync(uuidv4(), file.buffer);
 
     return {
       status: 'success',
