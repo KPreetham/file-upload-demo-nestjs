@@ -27,7 +27,8 @@ export class AppController {
     console.log('Received');
     console.log(file);
 
-    await fs.writeFileSync(uuidv4(), file.buffer);
+    const f = `uploads/${uuidv4()}-${file.originalname}`;
+    await fs.writeFileSync(f, file.buffer);
 
     return {
       status: 'success',
